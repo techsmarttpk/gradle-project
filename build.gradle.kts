@@ -1,5 +1,6 @@
 plugins {
-    id("java")
+    java
+    application
 }
 
 group = "org.example"
@@ -10,11 +11,18 @@ repositories {
 }
 
 dependencies {
-    testImplementation(platform("org.junit:junit-bom:5.10.0"))
-    testImplementation("org.junit.jupiter:junit-jupiter")
-    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+
+    // TestNG
+    testImplementation("org.testng:testng:7.12.0")
+
+    // Selenium
+    implementation("org.seleniumhq.selenium:selenium-java:4.41.0")
 }
 
 tasks.test {
-    useJUnitPlatform()
+    useTestNG()
+}
+
+application {
+    mainClass.set("org.example.Main")
 }
